@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Solr Benchnmark feature.
+ */
+
+include_once 'solrbm.features.inc';
 
 /**
  * @file
@@ -288,10 +294,14 @@ function solrbm_test() {
   $candidate_id = 116108;
   $candidate = solrbm_candidate_load($candidate_id);
 
-  $entity_type = 'solrbm_candidate';
+  $entity_type = 'node';
   $info = entity_get_info($entity_type);
   $properties = entity_get_property_info($entity_type);
   dpm($info);
   dpm($properties);
   dpm($candidate);
+
+  //$c = entity_metadata_wrapper($entity_type, $candidate);
+  //dpm($c->educationRecords[0]->value());
+  //dpm($c->skillRecords[0]->value());
 }
