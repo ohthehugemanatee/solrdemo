@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the SolrBM servers feature.
+ */
+
+include_once 'solrbm_servers.features.inc';
