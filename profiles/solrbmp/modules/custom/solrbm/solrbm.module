@@ -95,6 +95,13 @@ function solrbm_candidate_load($id = NULL, $reset = FALSE) {
   return $entities ? reset($entities) : FALSE;
 }
 
+/**
+ * @param int[]|false $ids
+ * @param array $conditions
+ * @param bool $reset
+ *
+ * @return array
+ */
 function solrbm_candidate_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
   return entity_load('solrbm_candidate', $ids, $conditions, $reset);
 }
@@ -104,6 +111,9 @@ function solrbm_candidate_load_multiple($ids = array(), $conditions = array(), $
  */
 class SolrBmCandidateController extends DrupalDefaultEntityController {
 
+  /**
+   * {@inheritdoc}
+   */
   protected function attachLoad(&$queried_entities, $revision_id = FALSE) {
     $this->attachLoadAliases($queried_entities);
     $this->attachLoadEducationRecords($queried_entities);
@@ -243,6 +253,13 @@ function solrbm_remark_load($id = NULL, $reset = FALSE) {
   return $entities ? reset($entities) : FALSE;
 }
 
+/**
+ * @param array $ids
+ * @param array $conditions
+ * @param bool $reset
+ *
+ * @return array
+ */
 function solrbm_remark_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
   return entity_load('solrbm_remark', $ids, $conditions, $reset);
 }
@@ -277,6 +294,13 @@ function solrbm_position_load($id = NULL, $reset = FALSE) {
   return $entities ? reset($entities) : FALSE;
 }
 
+/**
+ * @param array $ids
+ * @param array $conditions
+ * @param bool $reset
+ *
+ * @return mixed
+ */
 function solrbm_position_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
   return entity_load('solrbm_position', $ids, $conditions, $reset);
 }
@@ -286,22 +310,4 @@ function solrbm_position_load_multiple($ids = array(), $conditions = array(), $r
  */
 class SolrBmPositionController extends DrupalDefaultEntityController {
 
-}
-
-function solrbm_test() {
-  module_load_include('inc', 'entity', 'includes/entity.property');
-
-  $candidate_id = 116108;
-  $candidate = solrbm_candidate_load($candidate_id);
-
-  $entity_type = 'node';
-  $info = entity_get_info($entity_type);
-  $properties = entity_get_property_info($entity_type);
-  dpm($info);
-  dpm($properties);
-  dpm($candidate);
-
-  //$c = entity_metadata_wrapper($entity_type, $candidate);
-  //dpm($c->educationRecords[0]->value());
-  //dpm($c->skillRecords[0]->value());
 }
