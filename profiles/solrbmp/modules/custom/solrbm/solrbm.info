@@ -1,0 +1,4 @@
+name = "Solr Benchnmark"
+description = "Lot of document."
+package = Solr Benchnmark
+core = 7.x

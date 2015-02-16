@@ -1,0 +1,582 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the solrbm module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function solrbm_schema() {
+  $schema = array();
+
+  $schema['aliases'] = array(
+    'description' => 'Aliases',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Aliases cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'alias' => array(
+        'description' => 'Aliases alias',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 25,
+      ),
+    ),
+    'indexes' => array(
+      'r_cid' => array('cid'),
+      'r_all' => array('alias'),
+    ),
+
+    'foreign keys' => array(
+      'aliases_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['candidates'] = array(
+    'description' => 'Candidates',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Candidates cid',
+        'type' => 'serial',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'Candidates name',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 100,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'phone_number' => array(
+        'description' => 'Candidates phone_number',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 25,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'city' => array(
+        'description' => 'Candidates city',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'municipality' => array(
+        'description' => 'Candidates municipality',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'google_plus_url' => array(
+        'description' => 'Candidates google_plus_url',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'facebook_url' => array(
+        'description' => 'Candidates facebook_url',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'github_url' => array(
+        'description' => 'Candidates github_url',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'stack_overflow_url' => array(
+        'description' => 'Candidates stack_overflow_url',
+        'type' => 'char',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'year_career_start' => array(
+        'description' => 'Candidates year_career_start',
+        'type' => 'int',
+        'size' => 'normal',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('cid'),
+    'indexes' => array(
+      'r_cid1' => array('cid'),
+      'n_ind' => array('name'),
+      'n_city' => array('city'),
+      'n_municipality' => array('municipality'),
+    ),
+  );
+
+  $schema['comments'] = array(
+    'description' => 'Comments',
+    'fields' => array(
+      'ca_id' => array(
+        'description' => 'Comments ca_id',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'co_id' => array(
+        'description' => 'Comments co_id',
+        'type' => 'serial',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'Comments uid',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'content' => array(
+        'description' => 'Comments content',
+        'type' => 'text',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      // @see https://www.drupal.org/node/159605
+      // @see http://www.clusterdigital.co.uk/blog/09/09/storing-dates-drupal-schema-api
+      'date_created' => array(
+        'description' => 'Comments date_created',
+        'type' => 'int',
+        'mysql_type' => 'timestamp',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('co_id'),
+  );
+
+  $schema['education_records'] = array(
+    'description' => 'Education_records',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Education_records cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'record' => array(
+        'description' => 'Education_records record',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 1000,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'education_records_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['email_records'] = array(
+    'description' => 'Email_records',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Email_records cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'email' => array(
+        'description' => 'Email_records email',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 100,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'email_records_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['employment_records'] = array(
+    'description' => 'Employment_records',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Employment_records cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'role' => array(
+        'description' => 'Employment_records role',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 100,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'company' => array(
+        'description' => 'Employment_records company',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 100,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'employment_records_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['links'] = array(
+    'description' => 'Links',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Links cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'link_url' => array(
+        'description' => 'Links link_url',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'links_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['pictures'] = array(
+    'description' => 'Pictures',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Pictures cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'picture_url' => array(
+        'description' => 'Pictures picture_url',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'education_records_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['positions'] = array(
+    'description' => 'Positions',
+    'fields' => array(
+      'po_id' => array(
+        'description' => 'Positions po_id',
+        'type' => 'serial',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'Positions uid',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'pos_name' => array(
+        'description' => 'Positions pos_name',
+        'type' => 'text',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      // @seee https://www.drupal.org/node/159605
+      // @see http://www.clusterdigital.co.uk/blog/09/09/storing-dates-drupal-schema-api
+      'date_created' => array(
+        'description' => 'Positions date_created',
+        'type' => 'int',
+        'mysql_type' => 'timestamp',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('po_id'),
+  );
+
+  $schema['qualitative_information'] = array(
+    'description' => 'Qualitative_information',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Qualitative_information cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'information' => array(
+        'description' => 'Qualitative_information information',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 5000,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'cid' => array('cid'),
+    ),
+    'foreign keys' => array(
+      'qualitative_information_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['skill_records'] = array(
+    'description' => 'Skill_records',
+    'fields' => array(
+      'cid' => array(
+        'description' => 'Skill_records cid',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'skill' => array(
+        'description' => 'Skill_records skill',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 100,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'source_url' => array(
+        'description' => 'Skill_records source_url',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 250,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'r_cid' => array('cid'),
+      'r_skill' => array('skill'),
+    ),
+    'foreign keys' => array(
+      'skill_records_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('cid' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['tracked_candidates'] = array(
+    'description' => 'Tracked_candidates',
+    'fields' => array(
+      'po_id' => array(
+        'description' => 'Tracked_candidates po_id',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'ca_id' => array(
+        'description' => 'Tracked_candidates ca_id',
+        'type' => 'int',
+        'size' => 'big',
+        'length' => 20,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'indexes' => array(
+      'po_id' => array('po_id'),
+      'ca_id' => array('ca_id'),
+    ),
+    'foreign keys' => array(
+      'tracked_candidates_ibfk1' => array(
+        'table' => 'candidates',
+        'columns' => array('ca_id' => 'cid'),
+      ),
+    ),
+  );
+
+  $schema['zip_code'] = array(
+    'description' => 'Zip_code',
+    'fields' => array(
+      'zip_code_id' => array(
+        'description' => 'Zip_code zip_code_id',
+        'type' => 'int',
+        'size' => 'normal',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'zip_code' => array(
+        'description' => 'Zip_code zip_code',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 5,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'city' => array(
+        'description' => 'Zip_code city',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'county' => array(
+        'description' => 'Zip_code county',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'state_name' => array(
+        'description' => 'Zip_code state_name',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'state_prefix' => array(
+        'description' => 'Zip_code state_prefix',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 2,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'area_code' => array(
+        'description' => 'Zip_code area_code',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 3,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'time_zone' => array(
+        'description' => 'Zip_code time_zone',
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => 50,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'lat' => array(
+        'description' => 'Zip_code lat',
+        'type' => 'float',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'lon' => array(
+        'description' => 'Zip_code lon',
+        'type' => 'float',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('zip_code_id'),
+    'unique keys' => array(
+      'zip_code' => array('zip_code'),
+    ),
+    'indexes' => array(
+      'city_state' => array('city', 'state_prefix'),
+    ),
+  );
+
+  return $schema;
+}

@@ -1,0 +1,297 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the slr_migrate module.
+ */
+
+/**
+ * Implements hook_entity_info().
+ */
+function solrbm_entity_info() {
+  return array(
+    'solrbm_candidate' => array(
+      'label' => t('SolrBM Candidate'),
+      'fieldable' => FALSE,
+      'base table' => 'candidates',
+      'entity keys' => array(
+        'id' => 'cid',
+        'label' => 'name',
+      ),
+      'controller class' => 'SolrBmCandidateController',
+      'label callback' => 'solrbm_candidate_label',
+      'load hook' => 'solrbm_candidate_load',
+      'view modes' => array(
+        'full' => array(
+          'label' => t('Full'),
+          'custom settings' => FALSE,
+        ),
+      ),
+    ),
+    'solrbm_remark' => array(
+      'label' => t('SolrBM Comment'),
+      'fieldable' => FALSE,
+      'base table' => 'comments',
+      'entity keys' => array(
+        'id' => 'co_id',
+      ),
+      'controller class' => 'SolrBmRemarkController',
+      'label callback' => 'solrbm_remark_label',
+      'load hook' => 'solrbm_remark_load',
+      'view modes' => array(
+        'full' => array(
+          'label' => t('Full'),
+          'custom settings' => FALSE,
+        ),
+      ),
+    ),
+    'solrbm_position' => array(
+      'label' => t('SolrBM Position'),
+      'fieldable' => FALSE,
+      'base table' => 'positions',
+      'entity keys' => array(
+        'id' => 'po_id',
+        'label' => 'pos_name',
+      ),
+      'controller class' => 'SolrBmPositionController',
+      'label callback' => 'solrbm_position_label',
+      'load hook' => 'solrbm_position_load',
+      'view modes' => array(
+        'full' => array(
+          'label' => t('Full'),
+          'custom settings' => FALSE,
+        ),
+      ),
+    ),
+  );
+}
+
+/**
+ * @param EntityMetadataWrapper $entity
+ *
+ * @return string
+ */
+function solrbm_candidate_label(EntityMetadataWrapper $entity) {
+  return $entity->label();
+}
+
+/**
+ * @param int|null $id
+ * @param array $reset
+ *
+ * @return mixed
+ */
+function solrbm_candidate_load($id = NULL, $reset = FALSE) {
+  $ids = (isset($id) ? array($id) : array());
+  $conditions = array();
+  $entities = solrbm_candidate_load_multiple($ids, $conditions, $reset);
+
+  return $entities ? reset($entities) : FALSE;
+}
+
+function solrbm_candidate_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
+  return entity_load('solrbm_candidate', $ids, $conditions, $reset);
+}
+
+/**
+ * Class SolrBmCandidate.
+ */
+class SolrBmCandidateController extends DrupalDefaultEntityController {
+
+  protected function attachLoad(&$queried_entities, $revision_id = FALSE) {
+    $this->attachLoadAliases($queried_entities);
+    $this->attachLoadEducationRecords($queried_entities);
+    $this->attachLoadEmailRecords($queried_entities);
+    $this->attachLoadEmploymentRecords($queried_entities);
+    $this->attachLoadLinks($queried_entities);
+    $this->attachLoadPictures($queried_entities);
+    $this->attachLoadQualitativeInformation($queried_entities);
+    $this->attachLoadSkillRecords($queried_entities);
+
+    parent::attachLoad($queried_entities, $revision_id);
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadAliases(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'aliases', 'alias', 'aliases');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadEducationRecords(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'education_records', 'record', 'educationRecords');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadEmailRecords(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'email_records', 'email', 'emailRecords');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadEmploymentRecords(&$queried_entities) {
+    $this->attachLoadStructure($queried_entities, 'employment_records', 'employmentRecords');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadLinks(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'links', 'link_url', 'links');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadPictures(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'pictures', 'picture_url', 'pictures');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadQualitativeInformation(&$queried_entities) {
+    $this->attachLoadList($queried_entities, 'qualitative_information', 'information', 'qualitativeInformation');
+  }
+
+  /**
+   * @param array $queried_entities
+   */
+  protected function attachLoadSkillRecords(&$queried_entities) {
+    $this->attachLoadStructure($queried_entities, 'skill_records', 'skillRecords');
+  }
+
+  /**
+   * @param array $queried_entities
+   * @param string $table
+   * @param string $column
+   * @param string $field
+   */
+  protected function attachLoadList(&$queried_entities, $table, $column, $field) {
+    $result = db_select($table, 'a')
+      ->fields('a', array('cid', $column))
+      ->condition('a.cid', array_keys($queried_entities), 'IN')
+      ->execute();
+
+    foreach ($queried_entities as $entity) {
+      if (!isset($entity->$field)) {
+        $entity->$field = array();
+      }
+    }
+
+    foreach ($result as $row) {
+      $queried_entities[$row->cid]->{$field}[] = $row->$column;
+    }
+  }
+
+  /**
+   * @param array $queried_entities
+   * @param string $table
+   * @param string $field
+   */
+  protected function attachLoadStructure(&$queried_entities, $table, $field) {
+    $result = db_select($table, 'a')
+      ->fields('a')
+      ->condition('a.cid', array_keys($queried_entities), 'IN')
+      ->execute();
+
+    foreach ($queried_entities as $entity) {
+      if (!isset($entity->$field)) {
+        $entity->$field = array();
+      }
+    }
+
+    foreach ($result as $row) {
+      $queried_entities[$row->cid]->{$field}[] = $row;
+    }
+  }
+
+}
+
+/**
+ * @param EntityMetadataWrapper $entity
+ *
+ * @return string
+ */
+function solrbm_remark_label(EntityMetadataWrapper $entity) {
+  return $entity->label();
+}
+
+/**
+ * @param int|null $id
+ * @param array $reset
+ *
+ * @return mixed
+ */
+function solrbm_remark_load($id = NULL, $reset = FALSE) {
+  $ids = (isset($id) ? array($id) : array());
+  $conditions = array();
+  $entities = solrbm_remark_load_multiple($ids, $conditions, $reset);
+
+  return $entities ? reset($entities) : FALSE;
+}
+
+function solrbm_remark_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
+  return entity_load('solrbm_remark', $ids, $conditions, $reset);
+}
+
+/**
+ * Class SolrBmComment.
+ */
+class SolrBmRemarkController extends DrupalDefaultEntityController {
+
+}
+
+/**
+ * @param EntityMetadataWrapper $entity
+ *
+ * @return string
+ */
+function solrbm_position_label(EntityMetadataWrapper $entity) {
+  return $entity->label();
+}
+
+/**
+ * @param int|null $id
+ * @param array $reset
+ *
+ * @return mixed
+ */
+function solrbm_position_load($id = NULL, $reset = FALSE) {
+  $ids = (isset($id) ? array($id) : array());
+  $conditions = array();
+  $entities = solrbm_position_load_multiple($ids, $conditions, $reset);
+
+  return $entities ? reset($entities) : FALSE;
+}
+
+function solrbm_position_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
+  return entity_load('solrbm_position', $ids, $conditions, $reset);
+}
+
+/**
+ * Class SolrBmPosition.
+ */
+class SolrBmPositionController extends DrupalDefaultEntityController {
+
+}
+
+function solrbm_test() {
+  module_load_include('inc', 'entity', 'includes/entity.property');
+
+  $candidate_id = 116108;
+  $candidate = solrbm_candidate_load($candidate_id);
+
+  $entity_type = 'solrbm_candidate';
+  $info = entity_get_info($entity_type);
+  $properties = entity_get_property_info($entity_type);
+  dpm($info);
+  dpm($properties);
+  dpm($candidate);
+}

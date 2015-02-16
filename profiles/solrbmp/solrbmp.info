@@ -1,0 +1,17 @@
+name = Solr Benchmark
+description = Solr Benchmark.
+version = 7.x-1.0-dev
+core = 7.x
+
+; Core.
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = menu
+dependencies[] = path
+
+; Contributed.
+dependencies[] = admin_menu
+
+; Custom.
+dependencies[] = solrbm
