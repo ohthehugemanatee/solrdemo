@@ -213,32 +213,33 @@
  * @endcode
  */
 
-$databases = array (
-  'default' =>
-    array (
-      'default' =>
-        array (
-          'database' => 'solrtest',
-          'username' => 'root',
-          'password' => 'root',
-          'host' => 'localhost',
-          'port' => '',
-          'driver' => 'mysql',
-          'prefix' => '',
-          'collation' => 'utf8_general_ci',
-        ),
-      'solrtestdata' =>
-        array (
-          'database' => 'solrtestdata',
-          'username' => 'root',
-          'password' => 'root!',
-          'host' => 'localhost',
-          'port' => '',
-          'driver' => 'mysql',
-          'prefix' => '',
-          'collation' => 'utf8_general_ci',
-        ),
+$databases = array(
+  'default' => array(
+    'default' => array(
+      'driver' => 'mysql',
+      'username' => '?',
+      'password' => '?',
+      'host' => '127.0.0.1',
+      'port' => '3306',
+      'database' => '?',
+      'prefix' => array(
+        'default' => 'zzz_',
+        'aliases' => '',
+        'candidates' => '',
+        'comments' => '',
+        'education_records' => '',
+        'email_records' => '',
+        'employment_records' => '',
+        'links' => '',
+        'pictures' => '',
+        'positions' => '',
+        'qualitative_information' => '',
+        'skill_records' => '',
+        'tracked_candidates' => '',
+        'zip_code' => '',
+      ),
     ),
+  ),
 );
 
 /**
@@ -592,3 +593,7 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
+
+if (is_file(__DIR__ . '/settings.local.php')) {
+  require_once __DIR__ . '/settings.local.php';
+}
