@@ -1,0 +1,5 @@
+name = "Custom db migrate"
+description = "Migrate a custom db into Drupal"
+package = Pene
+core = 7.x
+dependencies[] = migrate

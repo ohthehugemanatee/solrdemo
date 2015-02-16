@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * A module to migrate users form D6 to D7
+ */
+
+// define the source database
+define("SOURCE_DATABASE", 'natilcom_nmpress');
+
+/**
+ * Implements hook_migrate_api().
+ */
+function nmp_migrate_migrate_api() {
+  $api = array(
+    'api' => 2,
+    'groups' => array(
+      'NMPUser' => array(
+        'title' => t('NMP User migration'),
+        'default_format' => 'filtered_html',
+      ),
+      'NMPNode' => array(
+        'title' => t('NMP Node migration'),
+        'default_format' => 'filtered_html',
+      ),
+    ),
+    'migrations' => array(
+      'NmpNodeBlogpost' => array(
+        'class_name' => 'NmpNodeBlogpostMigration',
+        'group_name' => 'NMPNode',
+      ),
+      'NmpNodePage' => array(
+        'class_name' => 'NmpNodePageMigration',
+        'group_name' => 'NMPNode',
+      ),
+      'NmpNodeStory' => array(
+        'class_name' => 'NmpNodeStoryMigration',
+        'group_name' => 'NMPNode',
+      ),
+      'NmpUser' => array(
+        'class_name' => 'NmpUserMigration',
+        'group_name' => 'NMPUser',
+      ),
+      'NmpUserPicture' => array(
+        'class_name' => 'NmpUserPictureMigration',
+        'group_name' => 'NMPUser',
+      ),
+      'NmpProfile' => array(
+        'class_name' => 'NmpProfileMigration',
+        'group_name' => 'NMPUser',
+      ),
+    ),
+  );
+  return $api;
+}

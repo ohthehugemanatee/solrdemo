@@ -1,0 +1,176 @@
+<?php
+
+/**
+ * @file
+ * Install and update functions for the slr_migrate module.
+ */
+
+$select = Database::getConnection('default', 'solrtestdata')->query('tablename', 'alias');
+
+class StrMigrateNodeController extends EntityDefaultController {
+  // public function
+}
+
+/**
+ * Implements hook_entity_info().
+ */
+function slr_migrate_entity_info() {
+  $return = array(
+    'slr_migrate_aliases' => array(
+      'label' => t('slr_migrate_aliases'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_aliases',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'alias' => 'alias',
+      ),
+    ),
+    'slr_migrate_candidates' => array(
+      'label' => t('slr_migrate_candidates'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_candidates',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'id' => 'cid',
+      ),
+    ),
+    'slr_migrate_comments' => array(
+      'label' => t('slr_migrate_comments'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_comments',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'ca_id' => 'ca_id',
+        'co_id' => 'co_id',
+        'uid' => 'uid',
+        'content' => 'content',
+      ),
+    ),
+    'slr_migrate_education_records' => array(
+      'label' => t('slr_migrate_education_records'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_education_records',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'record' => 'record',
+      ),
+    ),
+    'slr_migrate_email_records' => array(
+      'label' => t('slr_migrate_email_records'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_email_records',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'email' => 'email',
+      ),
+    ),
+    'slr_migrate_employment_records' => array(
+      'label' => t('slr_migrate_employment_records'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_employment_records',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'role' => 'role',
+        'company' => 'company',
+      ),
+    ),
+    'slr_migrate_links' => array(
+      'label' => t('slr_migrate_links'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_links',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'link_url' => 'link_url',
+      ),
+    ),
+    'slr_migrate_pictures' => array(
+      'label' => t('slr_migrate_pictures'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_pictures',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'picture_url' => 'picture_url',
+      ),
+    ),
+    'slr_migrate_positions' => array(
+      'label' => t('slr_migrate_positions'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_positions',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'po_id' => 'po_id',
+        'uid' => 'uid',
+        'pos_name' => 'pos_name',
+      ),
+    ),
+    'slr_migrate_qualitative_information' => array(
+      'label' => t('slr_migrate_qualitative_information'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_qualitative_information',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'information' => 'information',
+      ),
+    ),
+    'slr_migrate_skill_records' => array(
+      'label' => t('slr_migrate_skill_records'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_skill_records',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'cid' => 'cid',
+        'skill' => 'skill',
+        'source_url' => 'source_url',
+      ),
+    ),
+    'slr_migrate_tracked_candidates' => array(
+      'label' => t('slr_migrate_tracked_candidates'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_tracked_candidates',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'po_id' => 'po_id',
+        'ca_id' => 'ca_id',
+      ),
+    ),
+    'slr_migrate_zip_code' => array(
+      'label' => t('slr_migrate_zip_code'),
+      'controller class' => 'StrMigrateNodeController',
+      'base table' => 'slr_migrate_zip_code',
+      'uri callback' => '',
+      'fieldable' => FALSE,
+      'entity keys' => array(
+        'zip_code_id' => 'zip_code_id',
+        'zip_code' => 'zip_code',
+        'city' => 'city',
+        'county' => 'county',
+        'state_name' => 'state_name',
+        'state_prefix' => 'state_prefix',
+        'area_code' => 'area_code',
+        'time_zone' => 'time_zone',
+        'lat' => 'lat',
+        'lon' => 'lon',
+      ),
+    ),
+  );
+  return $return;
+}
