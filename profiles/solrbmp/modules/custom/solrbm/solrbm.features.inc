@@ -26,16 +26,26 @@ function solrbm_default_search_api_index() {
       "index_directly" : 1,
       "cron_limit" : "50",
       "fields" : {
+        "aliases" : { "type" : "list\\u003Ctext\\u003E" },
         "cid" : { "type" : "integer" },
         "city" : { "type" : "text" },
         "educationRecords" : { "type" : "list\\u003Ctext\\u003E" },
         "emailRecords" : { "type" : "list\\u003Ctext\\u003E" },
+        "employmentRecords:company" : { "type" : "list\\u003Ctext\\u003E" },
+        "employmentRecords:role" : { "type" : "list\\u003Ctext\\u003E" },
+        "facebookUrl" : { "type" : "uri" },
+        "gitHubUrl" : { "type" : "uri" },
+        "googlePlusUrl" : { "type" : "uri" },
         "links" : { "type" : "list\\u003Ctext\\u003E" },
         "municipality" : { "type" : "text" },
         "name" : { "type" : "text" },
         "pictures" : { "type" : "list\\u003Ctext\\u003E" },
         "qualitativeInformation" : { "type" : "list\\u003Ctext\\u003E" },
-        "search_api_language" : { "type" : "string" }
+        "search_api_language" : { "type" : "string" },
+        "skillRecords:skill" : { "type" : "list\\u003Ctext\\u003E" },
+        "skillRecords:sourceUrl" : { "type" : "list\\u003Curi\\u003E" },
+        "stackOverflowUrl" : { "type" : "uri" },
+        "yearCareerStart" : { "type" : "integer" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "Full" } },
