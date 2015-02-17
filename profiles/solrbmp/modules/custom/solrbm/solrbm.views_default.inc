@@ -189,6 +189,21 @@ function solrbm_views_default_views() {
   $handler->display->display_options['fields']['name']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['name']['field'] = 'name';
   $handler->display->display_options['fields']['name']['link_to_entity'] = 0;
+  /* Field: Indexed SolrBM Candidate: Aliases */
+  $handler->display->display_options['fields']['aliases']['id'] = 'aliases';
+  $handler->display->display_options['fields']['aliases']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['aliases']['field'] = 'aliases';
+  $handler->display->display_options['fields']['aliases']['link_to_entity'] = 0;
+  /* Field: Indexed SolrBM Candidate: Career start year */
+  $handler->display->display_options['fields']['yearCareerStart']['id'] = 'yearCareerStart';
+  $handler->display->display_options['fields']['yearCareerStart']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['yearCareerStart']['field'] = 'yearCareerStart';
+  $handler->display->display_options['fields']['yearCareerStart']['link_to_entity'] = 0;
+  /* Field: Indexed SolrBM Candidate: Qualitative Information */
+  $handler->display->display_options['fields']['qualitativeInformation']['id'] = 'qualitativeInformation';
+  $handler->display->display_options['fields']['qualitativeInformation']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['qualitativeInformation']['field'] = 'qualitativeInformation';
+  $handler->display->display_options['fields']['qualitativeInformation']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: City */
   $handler->display->display_options['fields']['city']['id'] = 'city';
   $handler->display->display_options['fields']['city']['table'] = 'search_api_index_solrbm_candidates';
@@ -199,16 +214,40 @@ function solrbm_views_default_views() {
   $handler->display->display_options['fields']['municipality']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['municipality']['field'] = 'municipality';
   $handler->display->display_options['fields']['municipality']['link_to_entity'] = 0;
-  /* Field: Indexed SolrBM Candidate: Qualitative Information */
-  $handler->display->display_options['fields']['qualitativeInformation']['id'] = 'qualitativeInformation';
-  $handler->display->display_options['fields']['qualitativeInformation']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['qualitativeInformation']['field'] = 'qualitativeInformation';
-  $handler->display->display_options['fields']['qualitativeInformation']['link_to_entity'] = 0;
-  /* Field: Indexed SolrBM Candidate: Career start year */
-  $handler->display->display_options['fields']['yearCareerStart']['id'] = 'yearCareerStart';
-  $handler->display->display_options['fields']['yearCareerStart']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['yearCareerStart']['field'] = 'yearCareerStart';
-  $handler->display->display_options['fields']['yearCareerStart']['link_to_entity'] = 0;
+  /* Field: Employment Records: Company (indexed) */
+  $handler->display->display_options['fields']['employmentRecords_company']['id'] = 'employmentRecords_company';
+  $handler->display->display_options['fields']['employmentRecords_company']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['employmentRecords_company']['field'] = 'employmentRecords_company';
+  $handler->display->display_options['fields']['employmentRecords_company']['label'] = 'Employment records: Company';
+  $handler->display->display_options['fields']['employmentRecords_company']['link_to_entity'] = 0;
+  /* Field: Employment Records: Role (indexed) */
+  $handler->display->display_options['fields']['employmentRecords_role']['id'] = 'employmentRecords_role';
+  $handler->display->display_options['fields']['employmentRecords_role']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['employmentRecords_role']['field'] = 'employmentRecords_role';
+  $handler->display->display_options['fields']['employmentRecords_role']['label'] = 'Employment records: Role';
+  $handler->display->display_options['fields']['employmentRecords_role']['link_to_entity'] = 0;
+  /* Field: Indexed SolrBM Candidate: Education Records */
+  $handler->display->display_options['fields']['educationRecords']['id'] = 'educationRecords';
+  $handler->display->display_options['fields']['educationRecords']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['educationRecords']['field'] = 'educationRecords';
+  $handler->display->display_options['fields']['educationRecords']['link_to_entity'] = 0;
+  /* Field: Indexed SolrBM Candidate: Email Records */
+  $handler->display->display_options['fields']['emailRecords']['id'] = 'emailRecords';
+  $handler->display->display_options['fields']['emailRecords']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['emailRecords']['field'] = 'emailRecords';
+  $handler->display->display_options['fields']['emailRecords']['link_to_entity'] = 0;
+  /* Field: Skill records: Skill (indexed) */
+  $handler->display->display_options['fields']['skillRecords_skill']['id'] = 'skillRecords_skill';
+  $handler->display->display_options['fields']['skillRecords_skill']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['skillRecords_skill']['field'] = 'skillRecords_skill';
+  $handler->display->display_options['fields']['skillRecords_skill']['label'] = 'Skill records: Skill';
+  $handler->display->display_options['fields']['skillRecords_skill']['link_to_entity'] = 0;
+  /* Field: Skill records: Source URL (indexed) */
+  $handler->display->display_options['fields']['skillRecords_sourceUrl']['id'] = 'skillRecords_sourceUrl';
+  $handler->display->display_options['fields']['skillRecords_sourceUrl']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['fields']['skillRecords_sourceUrl']['field'] = 'skillRecords_sourceUrl';
+  $handler->display->display_options['fields']['skillRecords_sourceUrl']['label'] = 'Skill records: Source';
+  $handler->display->display_options['fields']['skillRecords_sourceUrl']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: Facebook URL */
   $handler->display->display_options['fields']['facebookUrl']['id'] = 'facebookUrl';
   $handler->display->display_options['fields']['facebookUrl']['table'] = 'search_api_index_solrbm_candidates';
@@ -233,50 +272,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['fields']['stackOverflowUrl']['field'] = 'stackOverflowUrl';
   $handler->display->display_options['fields']['stackOverflowUrl']['label'] = 'Stack Overflow';
   $handler->display->display_options['fields']['stackOverflowUrl']['link_to_entity'] = 0;
-  /* Field: Employment Records: Company (indexed) */
-  $handler->display->display_options['fields']['employmentRecords_company']['id'] = 'employmentRecords_company';
-  $handler->display->display_options['fields']['employmentRecords_company']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['employmentRecords_company']['field'] = 'employmentRecords_company';
-  $handler->display->display_options['fields']['employmentRecords_company']['label'] = 'Employment records: Company';
-  $handler->display->display_options['fields']['employmentRecords_company']['link_to_entity'] = 0;
-  /* Field: Employment Records: Role (indexed) */
-  $handler->display->display_options['fields']['employmentRecords_role']['id'] = 'employmentRecords_role';
-  $handler->display->display_options['fields']['employmentRecords_role']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['employmentRecords_role']['field'] = 'employmentRecords_role';
-  $handler->display->display_options['fields']['employmentRecords_role']['label'] = 'Employment records: Role';
-  $handler->display->display_options['fields']['employmentRecords_role']['link_to_entity'] = 0;
-  /* Field: Indexed SolrBM Candidate: Aliases */
-  $handler->display->display_options['fields']['aliases']['id'] = 'aliases';
-  $handler->display->display_options['fields']['aliases']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['aliases']['field'] = 'aliases';
-  $handler->display->display_options['fields']['aliases']['link_to_entity'] = 0;
-  /* Field: Indexed SolrBM Candidate: Education Records */
-  $handler->display->display_options['fields']['educationRecords']['id'] = 'educationRecords';
-  $handler->display->display_options['fields']['educationRecords']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['educationRecords']['field'] = 'educationRecords';
-  $handler->display->display_options['fields']['educationRecords']['link_to_entity'] = 0;
-  /* Field: Indexed SolrBM Candidate: Email Records */
-  $handler->display->display_options['fields']['emailRecords']['id'] = 'emailRecords';
-  $handler->display->display_options['fields']['emailRecords']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['emailRecords']['field'] = 'emailRecords';
-  $handler->display->display_options['fields']['emailRecords']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: Links */
   $handler->display->display_options['fields']['links']['id'] = 'links';
   $handler->display->display_options['fields']['links']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['links']['field'] = 'links';
   $handler->display->display_options['fields']['links']['link_to_entity'] = 0;
-  /* Field: Skill records: Skill (indexed) */
-  $handler->display->display_options['fields']['skillRecords_skill']['id'] = 'skillRecords_skill';
-  $handler->display->display_options['fields']['skillRecords_skill']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['skillRecords_skill']['field'] = 'skillRecords_skill';
-  $handler->display->display_options['fields']['skillRecords_skill']['label'] = 'Skill records: Skill';
-  $handler->display->display_options['fields']['skillRecords_skill']['link_to_entity'] = 0;
-  /* Field: Skill records: Source URL (indexed) */
-  $handler->display->display_options['fields']['skillRecords_sourceUrl']['id'] = 'skillRecords_sourceUrl';
-  $handler->display->display_options['fields']['skillRecords_sourceUrl']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['fields']['skillRecords_sourceUrl']['field'] = 'skillRecords_sourceUrl';
-  $handler->display->display_options['fields']['skillRecords_sourceUrl']['label'] = 'Skill records: Source';
-  $handler->display->display_options['fields']['skillRecords_sourceUrl']['link_to_entity'] = 0;
   /* Sort criterion: Search: Relevance */
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_solrbm_candidates';
@@ -318,6 +318,48 @@ function solrbm_views_default_views() {
     2 => '2',
     1 => 0,
   );
+  /* Filter criterion: Indexed SolrBM Candidate: Aliases */
+  $handler->display->display_options['filters']['aliases']['id'] = 'aliases';
+  $handler->display->display_options['filters']['aliases']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['filters']['aliases']['field'] = 'aliases';
+  $handler->display->display_options['filters']['aliases']['group'] = 1;
+  $handler->display->display_options['filters']['aliases']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['aliases']['expose']['operator_id'] = 'aliases_op';
+  $handler->display->display_options['filters']['aliases']['expose']['label'] = 'Aliases';
+  $handler->display->display_options['filters']['aliases']['expose']['operator'] = 'aliases_op';
+  $handler->display->display_options['filters']['aliases']['expose']['identifier'] = 'aliases';
+  $handler->display->display_options['filters']['aliases']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  /* Filter criterion: Indexed SolrBM Candidate: Career start year */
+  $handler->display->display_options['filters']['yearCareerStart']['id'] = 'yearCareerStart';
+  $handler->display->display_options['filters']['yearCareerStart']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['filters']['yearCareerStart']['field'] = 'yearCareerStart';
+  $handler->display->display_options['filters']['yearCareerStart']['group'] = 1;
+  $handler->display->display_options['filters']['yearCareerStart']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['operator_id'] = 'yearCareerStart_op';
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['label'] = 'Career start year';
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['operator'] = 'yearCareerStart_op';
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['identifier'] = 'yearCareerStart';
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
+  /* Filter criterion: Indexed SolrBM Candidate: Qualitative Information */
+  $handler->display->display_options['filters']['qualitativeInformation']['id'] = 'qualitativeInformation';
+  $handler->display->display_options['filters']['qualitativeInformation']['table'] = 'search_api_index_solrbm_candidates';
+  $handler->display->display_options['filters']['qualitativeInformation']['field'] = 'qualitativeInformation';
+  $handler->display->display_options['filters']['qualitativeInformation']['group'] = 1;
+  $handler->display->display_options['filters']['qualitativeInformation']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['operator_id'] = 'qualitativeInformation_op';
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['label'] = 'Qualitative Information';
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['operator'] = 'qualitativeInformation_op';
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['identifier'] = 'qualitativeInformation';
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+  );
   /* Filter criterion: Indexed SolrBM Candidate: City */
   $handler->display->display_options['filters']['city']['id'] = 'city';
   $handler->display->display_options['filters']['city']['table'] = 'search_api_index_solrbm_candidates';
@@ -346,34 +388,6 @@ function solrbm_views_default_views() {
     2 => '2',
     1 => 0,
   );
-  /* Filter criterion: Indexed SolrBM Candidate: Qualitative Information */
-  $handler->display->display_options['filters']['qualitativeInformation']['id'] = 'qualitativeInformation';
-  $handler->display->display_options['filters']['qualitativeInformation']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['filters']['qualitativeInformation']['field'] = 'qualitativeInformation';
-  $handler->display->display_options['filters']['qualitativeInformation']['group'] = 1;
-  $handler->display->display_options['filters']['qualitativeInformation']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['qualitativeInformation']['expose']['operator_id'] = 'qualitativeInformation_op';
-  $handler->display->display_options['filters']['qualitativeInformation']['expose']['label'] = 'Qualitative Information';
-  $handler->display->display_options['filters']['qualitativeInformation']['expose']['operator'] = 'qualitativeInformation_op';
-  $handler->display->display_options['filters']['qualitativeInformation']['expose']['identifier'] = 'qualitativeInformation';
-  $handler->display->display_options['filters']['qualitativeInformation']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  /* Filter criterion: Indexed SolrBM Candidate: Career start year */
-  $handler->display->display_options['filters']['yearCareerStart']['id'] = 'yearCareerStart';
-  $handler->display->display_options['filters']['yearCareerStart']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['filters']['yearCareerStart']['field'] = 'yearCareerStart';
-  $handler->display->display_options['filters']['yearCareerStart']['group'] = 1;
-  $handler->display->display_options['filters']['yearCareerStart']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['yearCareerStart']['expose']['operator_id'] = 'yearCareerStart_op';
-  $handler->display->display_options['filters']['yearCareerStart']['expose']['label'] = 'Career start year';
-  $handler->display->display_options['filters']['yearCareerStart']['expose']['operator'] = 'yearCareerStart_op';
-  $handler->display->display_options['filters']['yearCareerStart']['expose']['identifier'] = 'yearCareerStart';
-  $handler->display->display_options['filters']['yearCareerStart']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
   /* Filter criterion: Employment Records: Company (indexed) */
   $handler->display->display_options['filters']['employmentRecords_company']['id'] = 'employmentRecords_company';
   $handler->display->display_options['filters']['employmentRecords_company']['table'] = 'search_api_index_solrbm_candidates';
@@ -399,20 +413,6 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['operator'] = 'employmentRecords_role_op';
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['identifier'] = 'employmentRecords_role';
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  /* Filter criterion: Indexed SolrBM Candidate: Aliases */
-  $handler->display->display_options['filters']['aliases']['id'] = 'aliases';
-  $handler->display->display_options['filters']['aliases']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['filters']['aliases']['field'] = 'aliases';
-  $handler->display->display_options['filters']['aliases']['group'] = 1;
-  $handler->display->display_options['filters']['aliases']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['aliases']['expose']['operator_id'] = 'aliases_op';
-  $handler->display->display_options['filters']['aliases']['expose']['label'] = 'Aliases';
-  $handler->display->display_options['filters']['aliases']['expose']['operator'] = 'aliases_op';
-  $handler->display->display_options['filters']['aliases']['expose']['identifier'] = 'aliases';
-  $handler->display->display_options['filters']['aliases']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
   );
