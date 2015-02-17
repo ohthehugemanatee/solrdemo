@@ -58,7 +58,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 100,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'phone_number' => array(
@@ -66,7 +65,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 25,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'city' => array(
@@ -74,7 +72,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'municipality' => array(
@@ -82,7 +79,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'google_plus_url' => array(
@@ -90,7 +86,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'facebook_url' => array(
@@ -98,7 +93,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'github_url' => array(
@@ -106,7 +100,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'stack_overflow_url' => array(
@@ -114,7 +107,6 @@ function solrbm_schema() {
         'type' => 'char',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE
       ),
       'year_career_start' => array(
@@ -159,14 +151,12 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'content' => array(
         'description' => 'Comments content',
         'type' => 'text',
         'size' => 'normal',
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       // @see https://www.drupal.org/node/159605
@@ -175,7 +165,6 @@ function solrbm_schema() {
         'description' => 'Comments date_created',
         'type' => 'int',
         'mysql_type' => 'timestamp',
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -198,7 +187,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 1000,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -229,7 +217,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 100,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -260,7 +247,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 100,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'company' => array(
@@ -268,7 +254,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 100,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -299,7 +284,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -330,7 +314,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -361,14 +344,12 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'pos_name' => array(
         'description' => 'Positions pos_name',
         'type' => 'text',
         'size' => 'normal',
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       // @seee https://www.drupal.org/node/159605
@@ -400,7 +381,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 5000,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -431,7 +411,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 100,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'source_url' => array(
@@ -439,7 +418,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 250,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
     ),
@@ -503,7 +481,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 5,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'city' => array(
@@ -511,7 +488,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'county' => array(
@@ -519,7 +495,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'state_name' => array(
@@ -527,7 +502,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'state_prefix' => array(
@@ -535,7 +509,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 2,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'area_code' => array(
@@ -543,7 +516,6 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 3,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'time_zone' => array(
@@ -551,21 +523,20 @@ function solrbm_schema() {
         'type' => 'varchar',
         'size' => 'normal',
         'length' => 50,
-        'unsigned' => TRUE,
         'not null' => TRUE,
       ),
       'lat' => array(
         'description' => 'Zip_code lat',
         'type' => 'float',
         'size' => 'normal',
-        'unsigned' => TRUE,
+        'unsigned' => FALSE,
         'not null' => TRUE,
       ),
       'lon' => array(
         'description' => 'Zip_code lon',
         'type' => 'float',
         'size' => 'normal',
-        'unsigned' => TRUE,
+        'unsigned' => FALSE,
         'not null' => TRUE,
       ),
     ),
