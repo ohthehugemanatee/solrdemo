@@ -164,8 +164,6 @@ function solrbm_schema() {
       'date_created' => array(
         'description' => 'Comments date_created',
         'type' => 'int',
-        'mysql_type' => 'timestamp',
-        'not null' => TRUE,
       ),
     ),
     'primary key' => array('co_id'),
@@ -357,9 +355,6 @@ function solrbm_schema() {
       'date_created' => array(
         'description' => 'Positions date_created',
         'type' => 'int',
-        'mysql_type' => 'timestamp',
-        'unsigned' => TRUE,
-        'not null' => TRUE,
       ),
     ),
     'primary key' => array('po_id'),
