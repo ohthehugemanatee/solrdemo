@@ -23,13 +23,14 @@ function solrbm_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Candidates';
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'search_api_views_cache';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '100';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '18';
@@ -173,6 +174,14 @@ function solrbm_views_default_views() {
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
   $handler->display->display_options['header']['result']['field'] = 'result';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['label'] = 'Empty text';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'Sorry, there were no results for your search criteria.';
+  $handler->display->display_options['empty']['area']['format'] = 'filtered_html';
   /* Field: Search: Relevance */
   $handler->display->display_options['fields']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['fields']['search_api_relevance']['table'] = 'search_api_index_solrbm_candidates';
@@ -455,20 +464,6 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['operator'] = 'skillRecords_skill_op';
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['identifier'] = 'skillRecords_skill';
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-  );
-  /* Filter criterion: Skill records: Source URL (indexed) */
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['id'] = 'skillRecords_sourceUrl';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['table'] = 'search_api_index_solrbm_candidates';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['field'] = 'skillRecords_sourceUrl';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['group'] = 1;
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['expose']['operator_id'] = 'skillRecords_sourceUrl_op';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['expose']['label'] = 'Skill Records: Source';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['expose']['operator'] = 'skillRecords_sourceUrl_op';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['expose']['identifier'] = 'skillRecords_sourceUrl';
-  $handler->display->display_options['filters']['skillRecords_sourceUrl']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
   );
