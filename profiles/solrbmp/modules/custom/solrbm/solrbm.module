@@ -173,3 +173,58 @@ function solrbm_position_load($id = NULL, $reset = FALSE) {
 function solrbm_position_load_multiple($ids = array(), $conditions = array(), $reset = FALSE) {
   return entity_load('solrbm_position', $ids, $conditions, $reset);
 }
+
+/**
+ * Custom block to display a link to XLS export of results.
+ */
+/**
+ * Implements hook_block_info().
+ */
+function solrbm_block_info() {
+  $blocks = array(
+    'solrbm_xls_export' => array(
+      'info' => t('XLS export link'),
+      'status' => TRUE,
+      'region' => 'content',
+      'weight' => 0,
+      'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+      'pages' => '',
+    ),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ * Display the solrbm xls export block.
+ */
+function solrbm_block_view($delta = '') {
+    $block = array();
+    switch ($delta) {
+      case 'solrbm_xls_export':
+        // destionation URL. Static for now.
+        $url = url('candidate/export');
+        // Image for the XLS chiclet, cribbed from views_data_export.
+        $image = theme('image', array(
+          'path' => 'profiles/solrbmp/modules/contrib/views_data_export/images/xls.png',
+          'alt' => 'Download as XLS',
+          'title' => 'Download as XLS',
+        ));
+        // Set URL options and query parameters.
+        $url_options = array(
+          'html' => TRUE,
+        );
+        $query = drupal_get_query_parameters();
+        if ($query) {
+          $url_options['query'] = $query;
+        }
+        $url_options = array('html' => TRUE);
+        if ($query) {
+          $url_options['query'] = $query;
+        }
+        $block['content'] = l($image, $url, $url_options);
+        $block['subject'] = '';
+        break;
+    }
+    return $block;
+}
