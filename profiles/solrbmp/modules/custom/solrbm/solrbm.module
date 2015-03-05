@@ -202,8 +202,6 @@ function solrbm_block_view($delta = '') {
     $block = array();
     switch ($delta) {
       case 'solrbm_xls_export':
-        // destionation URL. Static for now.
-        $url = url('candidate/export');
         // Image for the XLS chiclet, cribbed from views_data_export.
         $image = theme('image', array(
           'path' => 'profiles/solrbmp/modules/contrib/views_data_export/images/xls.png',
@@ -222,7 +220,7 @@ function solrbm_block_view($delta = '') {
         if ($query) {
           $url_options['query'] = $query;
         }
-        $block['content'] = l($image, $url, $url_options);
+        $block['content'] = l($image, 'candidate/export', $url_options);
         $block['subject'] = '';
         break;
     }
