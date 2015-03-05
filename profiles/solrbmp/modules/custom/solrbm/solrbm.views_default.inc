@@ -23,8 +23,8 @@ function solrbm_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Candidates';
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'XLS';
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'search_api_views_cache';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -186,11 +186,13 @@ function solrbm_views_default_views() {
   $handler->display->display_options['fields']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['fields']['search_api_relevance']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['search_api_relevance']['field'] = 'search_api_relevance';
+  $handler->display->display_options['fields']['search_api_relevance']['exclude'] = TRUE;
   $handler->display->display_options['fields']['search_api_relevance']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: ID */
   $handler->display->display_options['fields']['cid']['id'] = 'cid';
   $handler->display->display_options['fields']['cid']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['cid']['field'] = 'cid';
+  $handler->display->display_options['fields']['cid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['cid']['separator'] = '';
   $handler->display->display_options['fields']['cid']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: Name */
@@ -212,6 +214,7 @@ function solrbm_views_default_views() {
   $handler->display->display_options['fields']['qualitativeInformation']['id'] = 'qualitativeInformation';
   $handler->display->display_options['fields']['qualitativeInformation']['table'] = 'search_api_index_solrbm_candidates';
   $handler->display->display_options['fields']['qualitativeInformation']['field'] = 'qualitativeInformation';
+  $handler->display->display_options['fields']['qualitativeInformation']['exclude'] = TRUE;
   $handler->display->display_options['fields']['qualitativeInformation']['link_to_entity'] = 0;
   /* Field: Indexed SolrBM Candidate: City */
   $handler->display->display_options['fields']['city']['id'] = 'city';
@@ -301,9 +304,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['cid']['expose']['label'] = 'ID';
   $handler->display->display_options['filters']['cid']['expose']['operator'] = 'cid_op';
   $handler->display->display_options['filters']['cid']['expose']['identifier'] = 'cid';
+  $handler->display->display_options['filters']['cid']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['cid']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   $handler->display->display_options['filters']['cid']['group_info']['label'] = 'ID';
   $handler->display->display_options['filters']['cid']['group_info']['identifier'] = 'cid';
@@ -323,9 +328,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
   $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
   $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  $handler->display->display_options['filters']['name']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['name']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Aliases */
   $handler->display->display_options['filters']['aliases']['id'] = 'aliases';
@@ -337,9 +344,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['aliases']['expose']['label'] = 'Aliases';
   $handler->display->display_options['filters']['aliases']['expose']['operator'] = 'aliases_op';
   $handler->display->display_options['filters']['aliases']['expose']['identifier'] = 'aliases';
+  $handler->display->display_options['filters']['aliases']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['aliases']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Career start year */
   $handler->display->display_options['filters']['yearCareerStart']['id'] = 'yearCareerStart';
@@ -351,9 +360,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['yearCareerStart']['expose']['label'] = 'Career start year';
   $handler->display->display_options['filters']['yearCareerStart']['expose']['operator'] = 'yearCareerStart_op';
   $handler->display->display_options['filters']['yearCareerStart']['expose']['identifier'] = 'yearCareerStart';
+  $handler->display->display_options['filters']['yearCareerStart']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['yearCareerStart']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Qualitative Information */
   $handler->display->display_options['filters']['qualitativeInformation']['id'] = 'qualitativeInformation';
@@ -365,9 +376,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['qualitativeInformation']['expose']['label'] = 'Qualitative Information';
   $handler->display->display_options['filters']['qualitativeInformation']['expose']['operator'] = 'qualitativeInformation_op';
   $handler->display->display_options['filters']['qualitativeInformation']['expose']['identifier'] = 'qualitativeInformation';
+  $handler->display->display_options['filters']['qualitativeInformation']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['qualitativeInformation']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: City */
   $handler->display->display_options['filters']['city']['id'] = 'city';
@@ -379,9 +392,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['city']['expose']['label'] = 'City';
   $handler->display->display_options['filters']['city']['expose']['operator'] = 'city_op';
   $handler->display->display_options['filters']['city']['expose']['identifier'] = 'city';
+  $handler->display->display_options['filters']['city']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['city']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Municipality */
   $handler->display->display_options['filters']['municipality']['id'] = 'municipality';
@@ -393,9 +408,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['municipality']['expose']['label'] = 'Municipality';
   $handler->display->display_options['filters']['municipality']['expose']['operator'] = 'municipality_op';
   $handler->display->display_options['filters']['municipality']['expose']['identifier'] = 'municipality';
+  $handler->display->display_options['filters']['municipality']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['municipality']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Employment Records: Company (indexed) */
   $handler->display->display_options['filters']['employmentRecords_company']['id'] = 'employmentRecords_company';
@@ -407,9 +424,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['employmentRecords_company']['expose']['label'] = 'Employment Records: Company';
   $handler->display->display_options['filters']['employmentRecords_company']['expose']['operator'] = 'employmentRecords_company_op';
   $handler->display->display_options['filters']['employmentRecords_company']['expose']['identifier'] = 'employmentRecords_company';
+  $handler->display->display_options['filters']['employmentRecords_company']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['employmentRecords_company']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Employment Records: Role (indexed) */
   $handler->display->display_options['filters']['employmentRecords_role']['id'] = 'employmentRecords_role';
@@ -421,9 +440,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['label'] = 'Employment Records: Role';
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['operator'] = 'employmentRecords_role_op';
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['identifier'] = 'employmentRecords_role';
+  $handler->display->display_options['filters']['employmentRecords_role']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['employmentRecords_role']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Education Records */
   $handler->display->display_options['filters']['educationRecords']['id'] = 'educationRecords';
@@ -435,9 +456,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['educationRecords']['expose']['label'] = 'Education Records';
   $handler->display->display_options['filters']['educationRecords']['expose']['operator'] = 'educationRecords_op';
   $handler->display->display_options['filters']['educationRecords']['expose']['identifier'] = 'educationRecords';
+  $handler->display->display_options['filters']['educationRecords']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['educationRecords']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Indexed SolrBM Candidate: Email Records */
   $handler->display->display_options['filters']['emailRecords']['id'] = 'emailRecords';
@@ -449,9 +472,11 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['emailRecords']['expose']['label'] = 'Email Records';
   $handler->display->display_options['filters']['emailRecords']['expose']['operator'] = 'emailRecords_op';
   $handler->display->display_options['filters']['emailRecords']['expose']['identifier'] = 'emailRecords';
+  $handler->display->display_options['filters']['emailRecords']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['emailRecords']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
   );
   /* Filter criterion: Skill records: Skill (indexed) */
   $handler->display->display_options['filters']['skillRecords_skill']['id'] = 'skillRecords_skill';
@@ -463,14 +488,44 @@ function solrbm_views_default_views() {
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['label'] = 'Skill Records: Skill';
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['operator'] = 'skillRecords_skill_op';
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['identifier'] = 'skillRecords_skill';
+  $handler->display->display_options['filters']['skillRecords_skill']['expose']['remember'] = TRUE;
   $handler->display->display_options['filters']['skillRecords_skill']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
+    3 => 0,
+  );
+  $handler->display->display_options['filters']['skillRecords_skill']['group_info']['label'] = 'Skill (indexed)';
+  $handler->display->display_options['filters']['skillRecords_skill']['group_info']['identifier'] = 'skillRecords_skill';
+  $handler->display->display_options['filters']['skillRecords_skill']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['skillRecords_skill']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
   );
 
   /* Display: Table */
   $handler = $view->new_display('page', 'Table', 'table');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
   $handler->display->display_options['path'] = 'candidate';
+
+  /* Display: Excel export */
+  $handler = $view->new_display('views_data_export', 'Excel export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '250';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_xls';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = 'techhiring-results.xls';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['path'] = 'candidate/export';
+  $handler->display->display_options['displays'] = array(
+    'table' => 'table',
+    'default' => 0,
+  );
   $export['solrbm_candidates'] = $view;
 
   return $export;
